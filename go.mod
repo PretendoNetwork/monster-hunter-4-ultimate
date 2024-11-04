@@ -7,8 +7,8 @@ toolchain go1.22.4
 require (
 	github.com/PretendoNetwork/grpc-go v1.0.2
 	github.com/PretendoNetwork/nex-go/v2 v2.0.5
-	github.com/PretendoNetwork/nex-protocols-common-go/v2 v2.0.6-0.20241003191333-e853c5df5553
-	github.com/PretendoNetwork/nex-protocols-go/v2 v2.0.4-0.20240901165402-a9e527be1b87
+	github.com/PretendoNetwork/nex-protocols-common-go/v2 v2.0.6
+	github.com/PretendoNetwork/nex-protocols-go/v2 v2.0.4
 	github.com/PretendoNetwork/plogger-go v1.0.4
 	github.com/joho/godotenv v1.5.1
 	github.com/lib/pq v1.10.9
