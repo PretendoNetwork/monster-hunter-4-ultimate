@@ -3,6 +3,8 @@ package nex
 import (
 	"github.com/PretendoNetwork/monster-hunter-4-ultimate/database"
 	"github.com/PretendoNetwork/monster-hunter-4-ultimate/globals"
+	"github.com/PretendoNetwork/nex-go/v2/types"
+	match_making_types "github.com/PretendoNetwork/nex-protocols-go/v2/match-making/types"
 	nex_matchmake_extension "github.com/PretendoNetwork/monster-hunter-4-ultimate/nex/matchmake-extension"
 	common_globals "github.com/PretendoNetwork/nex-protocols-common-go/v2/globals"
 	common_match_making "github.com/PretendoNetwork/nex-protocols-common-go/v2/match-making"
@@ -43,4 +45,10 @@ func registerCommonSecureServerProtocols() {
 	commonMatchmakeExtensionProtocol := common_matchmake_extension.NewCommonProtocol(matchmakeExtensionProtocol)
 	commonMatchmakeExtensionProtocol.SetManager(matchmakingManager)
 	matchmakeExtensionProtocol.SetHandlerGetMyBlockList(nex_matchmake_extension.GetMyBlockList)
+	commonMatchmakeExtensionProtocol.CleanupMatchmakeSessionSearchCriterias = func(searchCriterias *types.List[*match_making_types.MatchmakeSessionSearchCriteria]) {
+		for _, searchCriteria := range searchCriterias.Slice() {
+			// * Index 2 is related to the region. Clear it to allow MH4U and MH4G users to play together
+			searchCriteria.Attribs.SetIndex(2, types.NewString(""))
+		}
+	}
 }
