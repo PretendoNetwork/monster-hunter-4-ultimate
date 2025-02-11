@@ -14,8 +14,7 @@ func GetMyBlockList(err error, packet nex.PacketInterface, callID uint32) (*nex.
 
 	rmcResponseStream := nex.NewByteStreamOut(globals.SecureEndpoint.LibraryVersions(), globals.SecureEndpoint.ByteStreamSettings())
 
-	lstPrincipalID := types.NewList[*types.PID]()
-	lstPrincipalID.Type = types.NewPID(0)
+	lstPrincipalID := types.NewList[types.PID]()
 	lstPrincipalID.WriteTo(rmcResponseStream)
 
 	rmcResponseBody := rmcResponseStream.Bytes()

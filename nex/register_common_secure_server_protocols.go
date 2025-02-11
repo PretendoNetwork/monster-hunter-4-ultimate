@@ -45,10 +45,10 @@ func registerCommonSecureServerProtocols() {
 	commonMatchmakeExtensionProtocol := common_matchmake_extension.NewCommonProtocol(matchmakeExtensionProtocol)
 	commonMatchmakeExtensionProtocol.SetManager(matchmakingManager)
 	matchmakeExtensionProtocol.SetHandlerGetMyBlockList(nex_matchmake_extension.GetMyBlockList)
-	commonMatchmakeExtensionProtocol.CleanupMatchmakeSessionSearchCriterias = func(searchCriterias *types.List[*match_making_types.MatchmakeSessionSearchCriteria]) {
-		for _, searchCriteria := range searchCriterias.Slice() {
+	commonMatchmakeExtensionProtocol.CleanupMatchmakeSessionSearchCriterias = func(searchCriterias types.List[match_making_types.MatchmakeSessionSearchCriteria]) {
+		for i := range searchCriterias {
 			// * Index 2 is related to the region. Clear it to allow MH4U and MH4G users to play together
-			searchCriteria.Attribs.SetIndex(2, types.NewString(""))
+			searchCriterias[i].Attribs[2] = ""
 		}
 	}
 }
