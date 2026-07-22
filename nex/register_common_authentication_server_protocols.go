@@ -31,4 +31,5 @@ func registerCommonAuthenticationServerProtocols() {
 	commonTicketGrantingProtocol.SecureStationURL = secureStationURL
 	commonTicketGrantingProtocol.BuildName = types.NewString(serverBuildString)
 	commonTicketGrantingProtocol.SecureServerAccount = globals.SecureServerAccount
+	commonTicketGrantingProtocol.ConfigurePNValidation([]string{"0011D701"})
 }
