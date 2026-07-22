@@ -22,7 +22,8 @@ import (
 func registerCommonSecureServerProtocols() {
 	secureProtocol := secure.NewProtocol()
 	globals.SecureEndpoint.RegisterServiceProtocol(secureProtocol)
-	common_secure.NewCommonProtocol(secureProtocol)
+	commonSecureProtocol := common_secure.NewCommonProtocol(secureProtocol)
+	commonSecureProtocol.EnableInsecureRegister()
 
 	natTraversalProtocol := nat_traversal.NewProtocol()
 	globals.SecureEndpoint.RegisterServiceProtocol(natTraversalProtocol)
