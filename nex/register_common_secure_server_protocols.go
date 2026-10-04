@@ -3,9 +3,8 @@ package nex
 import (
 	"github.com/PretendoNetwork/monster-hunter-4-ultimate/database"
 	"github.com/PretendoNetwork/monster-hunter-4-ultimate/globals"
-	"github.com/PretendoNetwork/nex-go/v2/types"
-	match_making_types "github.com/PretendoNetwork/nex-protocols-go/v2/match-making/types"
 	nex_matchmake_extension "github.com/PretendoNetwork/monster-hunter-4-ultimate/nex/matchmake-extension"
+	"github.com/PretendoNetwork/nex-go/v2/types"
 	common_globals "github.com/PretendoNetwork/nex-protocols-common-go/v2/globals"
 	common_match_making "github.com/PretendoNetwork/nex-protocols-common-go/v2/match-making"
 	common_match_making_ext "github.com/PretendoNetwork/nex-protocols-common-go/v2/match-making-ext"
@@ -14,6 +13,7 @@ import (
 	common_secure "github.com/PretendoNetwork/nex-protocols-common-go/v2/secure-connection"
 	match_making "github.com/PretendoNetwork/nex-protocols-go/v2/match-making"
 	match_making_ext "github.com/PretendoNetwork/nex-protocols-go/v2/match-making-ext"
+	match_making_types "github.com/PretendoNetwork/nex-protocols-go/v2/match-making/types"
 	matchmake_extension "github.com/PretendoNetwork/nex-protocols-go/v2/matchmake-extension"
 	nat_traversal "github.com/PretendoNetwork/nex-protocols-go/v2/nat-traversal"
 	secure "github.com/PretendoNetwork/nex-protocols-go/v2/secure-connection"
@@ -30,6 +30,7 @@ func registerCommonSecureServerProtocols() {
 	common_nat_traversal.NewCommonProtocol(natTraversalProtocol)
 
 	matchmakingManager := common_globals.NewMatchmakingManager(globals.SecureEndpoint, database.Postgres)
+	matchmakingManager.GetUserFriendPIDs = globals.GetUserFriendPIDs
 
 	matchMakingProtocol := match_making.NewProtocol()
 	globals.SecureEndpoint.RegisterServiceProtocol(matchMakingProtocol)
